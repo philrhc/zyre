@@ -161,3 +161,9 @@ func (zyre *Zyre) Peers() []string {
 	r := <-zyre.replies
 	return r.Payload.([]string)
 }
+
+func (zyre *Zyre) PeersByGroup(group string) []Peer {
+	zyre.requests <- &Cmd{ID: "GROUP PEERS", Payload: group}
+	r := <-zyre.replies
+	return r.Payload.([]Peer)
+}

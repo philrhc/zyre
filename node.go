@@ -276,6 +276,13 @@ func (n *node) recvAPI(c *Cmd) {
 			peersIDs = append(peersIDs, k)
 		}
 		n.replies <- &Cmd{Payload: peersIDs}
+	case "GROUP PEERS":
+		group := c.Payload.(string)
+		var peers []Peer
+		for _, peer := range n.peerGroups[group].peers {
+			peers = append(peers, *peer)
+		}
+		n.replies <- &Cmd{Payload: peers}
 	default:
 		log.Printf("invalid command %q", c.ID)
 	}

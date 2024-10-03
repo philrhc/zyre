@@ -91,6 +91,12 @@ func TestZyre(t *testing.T) {
 		t.Errorf("want %q, got %q", want, string(event.Msg))
 	}
 
+	// GROUP PEERS
+	groupPeers := nodes[0].PeersByGroup(group)
+	if len(groupPeers) != 1 {
+		t.Errorf("want 1 group peer, got %v", len(groupPeers))
+	}
+
 	// LEAVE
 	nodes[0].Leave(group)
 	event = waitForEvent(t, "LEAVE", nodes[1].Events())
