@@ -250,6 +250,7 @@ func (n *node) recvAPI(c *Cmd) {
 			n.ownGroups[group] = NewGroup(group)
 			m := NewZreMsg(JoinID)
 			m.Group = group
+			m.Endpoint = n.endpoint
 			n.status++
 			m.Status = n.status
 			for _, peer := range n.peers {
@@ -263,6 +264,7 @@ func (n *node) recvAPI(c *Cmd) {
 			// FIMXE function for JOIN and LEAVE
 			m := NewZreMsg(LeaveID)
 			m.Group = group
+			m.Endpoint = n.endpoint
 			n.status++
 			m.Status = n.status
 			for _, peer := range n.peers {
