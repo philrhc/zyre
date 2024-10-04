@@ -368,7 +368,7 @@ func (n *node) joinPeerGroup(peer *Peer, name string) *Group {
 	group.Join(peer)
 	// Now tell the caller about the peer joined group
 	n.sendEvent(&Event{Type: "JOIN", PeerUUID: peer.Identity,
-		PeerName: peer.Name, Group: name})
+		PeerName: peer.Name, PeerAddr: peer.endpoint, Group: name})
 	return group
 }
 

@@ -1,4 +1,4 @@
-module github.com/go-zeromq/zyre
+module github.com/philrhc/zyre
 
 go 1.19
 
