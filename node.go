@@ -341,7 +341,7 @@ func (n *node) removePeer(peer *Peer) {
 		return
 	}
 	// Tell the calling application the peer has gone
-	n.sendEvent(&Event{Type: "EXIT", PeerUUID: peer.Identity, PeerName: peer.Name})
+	n.sendEvent(&Event{Type: "EXIT", PeerUUID: peer.Identity, PeerName: peer.Name, PeerAddr: peer.endpoint})
 
 	// Remove peer from any groups we've got it in
 	for _, group := range n.peerGroups {
